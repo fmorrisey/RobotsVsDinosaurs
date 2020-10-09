@@ -1,2 +1,2 @@
 # RobotsVsDinosaurs
-Project RobotsVsDinosaurs dCC
+# Project RobotsVsDinosaurs @ devCodeCamp
