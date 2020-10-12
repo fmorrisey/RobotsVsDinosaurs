@@ -31,11 +31,16 @@ namespace RobotsVsDinosaurs
         {
             //We will create some kind of loop and menu system
             //First Let's show our robots and dinos to the user
+            Menu.Blinker("ALERT!!!", 10, 100);
+            Menu.Welcome();
             Menu.DisplayDinoHerd(herdAlpha.herdGroup);
             Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
-            Menu.MenuDecorators("star");
             
-            Console.ReadLine();
+            Menu.Pause();
+            
+
+            
+            
         }
 
 

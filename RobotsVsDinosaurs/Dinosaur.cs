@@ -12,11 +12,11 @@ namespace RobotsVsDinosaurs
     class Dinosaur
     {
         //Member Variables
-        public string Type { get; set; }
-        public int Health { get; set; }
-        public int Energy { get; set; }
-        public string AttackType { get; set; }
-        public int AttackPower { get; set; }
+        public string Type;
+        public int Health;
+        public int Energy;
+        public string AttackType;
+        public int AttackPower;
 
         //Dinosaur dinosaur;
         //This will be used frequently
