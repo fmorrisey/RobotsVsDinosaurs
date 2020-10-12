@@ -6,18 +6,45 @@ using System.Threading.Tasks;
 
 namespace RobotsVsDinosaurs
 {
-    // DINOSAURS OBJECT
+    // ROBOT OBJECTS
     //
     //
 
     class Robot
     {
-        private readonly string Name;
-        private readonly int Health = 10;
-        private readonly int PowerLevel = 10;
-        private readonly string Weapon = "Sword";
-        private readonly int AttackPower = 10;
+        //Member Variables
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int PowerLevel { get; set; }
+        public string Weapon { get; set; }
+        public int AttackPower { get; set; }
 
+        //This will be used frequently
+        //Random rand;
+
+        //Constructor
+        public Robot(string name, int health, int powerLevel, string weapon, int attackPower)
+        {
+            //Instantiate Robot Objects and assign values
+            this.Name = name;
+            this.Health = health;
+            this.PowerLevel = powerLevel;
+            this.Weapon = weapon;
+            this.AttackPower = attackPower;
+            
+        }
+
+        // MemberMethods
+
+        public void Attack()
+        {
+            //this will be called to attack opponent
+        }
+
+        public void TakeDamage()
+        {
+            // ths will be called to assign damage to robot
+        }
 
 
     }
