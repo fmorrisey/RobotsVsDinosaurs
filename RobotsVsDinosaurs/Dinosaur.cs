@@ -18,6 +18,7 @@ namespace RobotsVsDinosaurs
         public string AttackType { get; set; }
         public int AttackPower { get; set; }
 
+        //Dinosaur dinosaur;
         //This will be used frequently
         //Random rand;
 
@@ -44,7 +45,8 @@ namespace RobotsVsDinosaurs
             // this will be called to assign damage to dino
         }
 
-        
+       
+
 
 
     }
