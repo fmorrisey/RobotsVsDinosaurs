@@ -10,7 +10,7 @@ namespace RobotsVsDinosaurs
     class Dinosaur
     {
         ////Member Variables
-        //These are used for indvidual Dinosaurs
+        //These are used for individual Dinosaurs
         public string Type;
         public int Health;
         public int Energy;
@@ -25,24 +25,26 @@ namespace RobotsVsDinosaurs
         //Constructor
         public Dinosaur(string type, int health, int energy, string attackType, int attackPower)
         {
-            //Instatiate Dino object and assigns values
+            //Instantiate Dino object and assigns values
             this.Type = type;
             this.Health = health;
             this.Energy = energy;
             this.AttackType = attackType;
             this.AttackPower = attackPower;
+
+            //Instantiates the hit point calculation tools
             this.rand = new Random();
             this.hitPoints = 0;
         }
 
-        //Memeber Methods
-
-        public void Attack(Robot robotVictim, Dinosaur dinoAttacker) // take in robot and dino hit points
-        {
-            //Determines attackpower
+        ////Member Methods
+        public void Attack(Robot robotVictim, Dinosaur dinoAttacker)
+        {   // Sets a Robot victim of a Dino's attack   
+            // Determines hitPoints based on Dino's attackPower
             int hitPoints = DinoAttackHitPoints(dinoAttacker.AttackPower);
-            robotVictim.Health -= hitPoints;
+            robotVictim.Health -= hitPoints; // Then does damage to robot
 
+            // Shows the calculations of the attacker's hitPoints
             Console.Write($"DINO: {dinoAttacker.Type} | " +
                 $"AtkPwr: {dinoAttacker.AttackPower} | " +
                 $"Hit:{hitPoints} |");
@@ -51,11 +53,11 @@ namespace RobotsVsDinosaurs
         public int DinoAttackHitPoints(int attack)
         {
             //Rand Hit Point Logic
-            int lowerInt = rand.Next(5, 8);
-            int lowerRng = rand.Next(lowerInt, attack);
-            int attackResult = rand.Next(lowerRng, attack);
-            Console.Write($"| Lower: {lowerRng} ");
-            Console.WriteLine($" | Upper: {attackResult} ");
+            int lowerInt = rand.Next(5, 8); //choses a random min
+            int lowerRng = rand.Next(lowerInt, attack); //creates the lower range limit
+            int attackResult = rand.Next(lowerRng, attack); //determines the hit points
+            Console.Write($"| Lower: {lowerRng} "); // generates a message for the developer
+            Console.WriteLine($" | Upper: {attackResult} "); //these messages can be disabled
             return attackResult;
 
         }

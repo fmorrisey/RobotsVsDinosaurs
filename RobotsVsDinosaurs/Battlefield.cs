@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RobotsVsDinosaurs
@@ -14,7 +15,8 @@ namespace RobotsVsDinosaurs
         Dinosaur dinosaur; //Brings the Dino obj to the Battlefield
         Robot robot; //Brings the Robot obj to the battlefield
         Menu Menu;
-        
+
+        int roundCounter;
 
         Player player1;
         
@@ -30,135 +32,63 @@ namespace RobotsVsDinosaurs
 
         public void RunGame()
         {
-            //We will create some kind of loop and menu system
-            //First Let's show our robots and dinos to the user
-            //HitTransfer = null;
-
-
+                      
             //----MENU START UP----//
-            // Menu.Blinker("ALERT!!!", 10, 100);
-            //Menu.Welcome();
+            Menu.Blinker("ALERT!!!", 10, 100);
+            Menu.Welcome();
 
-
+            //SHOWS THE TEAMS AND STARTS THE BATTLE
             
+            bool newRound = true;
+            roundCounter = 1;
 
-
-            do
+            while (newRound != false)
             {
-                Menu.DisplayDinoHerd(herdAlpha.herdGroup);
-                Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
-                Menu.Pause();
-                Menu.Clear();
+                //First we do a roster check
+                if (herdAlpha.herdGroup.Count <= 0)
+                {
+                    //When Dino herd = 0
+                    Menu.Blinker("ROBOTS WIN", 10, 200);
+                    newRound = false;
+                    break;
+                }
+                else if (fleetBravo.fleetGroup.Count <= 0)
+                {
+                    //When Robot Fleet = 0 
+                    Menu.Blinker("DINOS WIN", 10, 200);
+                    newRound = false;
+                    break;
+                }
+
+                Menu.DisplayDinoHerd(herdAlpha.herdGroup); // Displays current teams
+                Menu.DisplayRobotFleet(fleetBravo.fleetGroup); //Including their status
+                Menu.Pause("Press ENTER to Start Round"); // then allows the user to move on
+                Menu.Clear(); // clears the console
+
+
+                //START NEXT ROUND
+
+                //Second we draw the menu
+                Menu.Blinker($" ROUND START! ", 3, 300);
+                Menu.MenuDecorators("hash");
+                Console.WriteLine($"#### ROUND: {roundCounter} ####");
+                Menu.MenuDecorators("hash");
+
+                
+                // Finally they attack each other if anyone is still standing
                 herdAlpha.DinosaurAttack(fleetBravo.fleetGroup, herdAlpha.herdGroup);
                 fleetBravo.RobotAttack(herdAlpha.herdGroup, fleetBravo.fleetGroup);
-
-            } while ((herdAlpha.herdGroup.Count > 0) && (fleetBravo.fleetGroup.Count > 0));
-
+                roundCounter++;
+                
+            }
+            
+            //When a team has no one left standing, it ends the game
+            //Shows who's left standing
             Menu.DisplayDinoHerd(herdAlpha.herdGroup);
             Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
-
-            if (herdAlpha.herdGroup.Count <= 0)
-            {
-                //When Dino herd = 0
-                Menu.Blinker("ROBOTS WIN", 10, 200);
-            }
-            else if (fleetBravo.fleetGroup.Count <= 0)
-            {
-                //When Robot Fleet = 0 
-                Menu.Blinker("DINOS WIN", 10, 200);
-            }
+            Menu.Pause("Press Enter to End Game");
+            Menu.Blinker("FIGHT OVER", 5, 300);
             
-            Console.WriteLine("GAME OVER!!!");
-
-            //Loop until all died of winner
-
-
-            //death check for removal
-
-
-            
-
-
-            Menu.Pause();
-
-            //dinosaur.TakeDamage(dinosaur.AttackPower);
-            //robot.Health = dinosaur.AttackPower;
-            //fleetBravo.fleetGroup.ForEach();
-
-            //List<Robot> robots = fleetBravo.Select()
-
         }
-        
-
-        //public Robot Attack(List<Robot> robot)
-        //{
-        //    string userChoice = Console.ReadLine();
-        //    Console.WriteLine(robot);
-
-        //    for (int i = 0; i < robot.Count; i++)
-        //    {
-        //        if (robot)
-        //        {
-
-        //        }
-        //    }
-        //}
-        /*
-        public void UsePlatform()
-        {
-
-            string userInput = "";
-            //Product transferProduct = null;
-
-            Console.WriteLine("Welcome to AmAZINGZon - by Guff Benthos");
-
-            while (userInput != "8")
-            {
-                Menu.GameMenuDisplay();
-                userInput = Console.ReadLine();
-
-                switch (userInput)
-                {
-                    case "1":
-                        consumer.AskFirstName();
-                        break;
-                    case "2":
-                        consumer.AskLastName();
-                        break;
-                    case "3":
-                        if (transferProduct != null)
-                        {
-                            consumer.AddToCart(transferProduct);
-                            inventory.InventoryUpdate(transferProduct);
-                        }
-                        else
-                        {
-                            Console.WriteLine("No Product Selected");
-                        }
-                        break;
-                    case "4": //consumer.CreateReview(); 
-                        break;
-                    case "5":
-                        transferProduct = consumer.ProductSearch(inventory.inventory);
-                        break;
-                    case "6":
-                        consumer.DisplayProductInfo(inventory.inventory);
-                        break;
-                    case "7":
-                        Console.WriteLine("Nothing here bud (View Cart)");
-                        break;
-                    case "8":
-                        Console.WriteLine("Thanks for using the AMAZINGZONE program!");
-                        break;
-                    default:
-                        Console.WriteLine("Whoops! You've entered invalid input.");
-                        Console.WriteLine("Please be sure to enter a number between 1 and 8.");
-                        break;
-                }
-            }
-        }*/
-
-
-
     }
 }

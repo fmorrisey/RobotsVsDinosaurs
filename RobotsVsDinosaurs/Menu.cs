@@ -12,10 +12,7 @@ namespace RobotsVsDinosaurs
     {
         public Herd herdAlpha; // Creates the Dino Herd
         public Fleet fleetBravo; // Creates the Robot Fleet
-        Dinosaur dinosaur; //Brings the Dino obj to the Battlefield
-        Robot robot; //Brings the Robot obj to the battlefield
-
-        //Menu menu;
+        
 
         public Menu()
         {
@@ -31,13 +28,14 @@ namespace RobotsVsDinosaurs
             //Welcomes the player to the game
 
             Console.WriteLine("    THE DINOSAURS ARE ATTACKING!!!");
-            Thread.Sleep(1000);
+            Thread.Sleep(800);
            
             Console.WriteLine("###################################### \n" +
-                              "####WELCOME TO ROBOTS VS DINOSAURS#### \n" +
+                              "### WELCOME TO ROBOTS VS DINOSAURS ### \n" +
                               "###################################### \n");
-            Thread.Sleep(500);
-            Console.Write("--Press ENTER to START the Battle!!!--");
+            Thread.Sleep(800);
+            Console.Write("--Press ENTER to START a New Game!!!--");
+            Thread.Sleep(800);
             Console.ReadLine();
         }
 
@@ -50,7 +48,7 @@ namespace RobotsVsDinosaurs
             Console.WriteLine("\nPress [1] for Robot to attack Dino.");
             Console.WriteLine("Press [2] for Dino to attack Robo.");
             Console.WriteLine("Press [3] to add item to cart.");
-            Console.WriteLine("Press [4] to to create a review.");
+            Console.WriteLine("Press [4] to create a review.");
             Console.WriteLine("Press [5] to select a product.");
             Console.WriteLine("Press [6] to display a product.");
             Console.WriteLine("Press [7] ????????(later view cart).");
@@ -72,6 +70,41 @@ namespace RobotsVsDinosaurs
 
             //return?
         }
+
+        public bool PlayAgain(bool newGame)
+        {
+            newGame = false;
+            Clear();
+            Blinker("Play Again???", 3, 300);
+            Console.WriteLine("enter y/n");
+            
+            
+            while (newGame != true)
+            {
+                string userChoice = Console.ReadLine();
+                switch (userChoice)
+                {
+                    case "y": newGame = true; return newGame;
+                    case "Y": newGame = true; return newGame;
+                    case "n": newGame = false; return newGame;
+                    case "N": newGame = false; return newGame;
+                    default: Console.WriteLine("Please enter Y or N");break;
+                }
+                Console.WriteLine(newGame + userChoice);
+            }
+            
+            return newGame;
+        }
+
+        public void TeamInit()
+        {
+            Clear();
+            Console.WriteLine("HERE ARE THE TWO TEAMS!!!");
+            Console.WriteLine("Wish them luck!");
+            Pause("Press ENTER to start the battle");
+            
+        }
+
 
         public void DisplayScore(List<Dinosaur> dinosaurs, List<Robot> robots)
         {   //An Attempt to make a table but will require actual table commands and custom classes
@@ -167,6 +200,7 @@ namespace RobotsVsDinosaurs
                 case "slashrt": Console.WriteLine("///////////////"); break;
                 case "slashlf": Console.WriteLine("\\\\\\\\\\\\\\\\"); break;
                 case "pipe": Console.WriteLine("|||||||||||||||||||"); break;
+                case "hash": Console.WriteLine("###################"); break;
                 case "div": Console.Write(" || "); break;
                 default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
 
@@ -174,23 +208,19 @@ namespace RobotsVsDinosaurs
         }
 
 
-        public void Next()
+        
+        public void Pause(string message)
         {
-            //A console readline that tells user to hit enter for next menu option
-            Console.WriteLine("---Press any key for next");
-            Console.ReadLine();
-        }
-        public void Pause()
-        {
-            //Basicly a CR with text output so the user knows what it's asking for
-            Console.WriteLine("press any key to contiunue...");
+            //Basically a CR with text output so the user knows what it's asking for
+            Console.WriteLine(message);
+            Thread.Sleep(800);// Waits for player to read team info
             Console.ReadLine();
         }
         
         public void Blinker(string text, int blinkNum, int milliseconds)
         {
             //COPIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
-            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interveral
+            //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
 
             bool visible = true;
             for (int i = 0; i < blinkNum; i++)
@@ -198,7 +228,6 @@ namespace RobotsVsDinosaurs
                 string alert = visible ? ($"{text} {text} {text}") : "";
                 visible = !visible;
                 Console.Clear();
-                //string details = File.ReadAllText(@"C:\PersonalAssistant\RecentMeetingDetails.txt");
                 Console.Write("{0}\n", alert);
                 Thread.Sleep(milliseconds);
             }
@@ -210,11 +239,6 @@ namespace RobotsVsDinosaurs
             Console.Clear();
         }
 
-        public void Write(string text)
-        {
-            //This is pointless but a faster writeline method
-            //Cause anything goes I guess???
-            Console.WriteLine(text);
-        }
+        
     }
 }
