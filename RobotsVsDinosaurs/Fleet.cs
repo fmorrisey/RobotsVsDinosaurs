@@ -36,7 +36,7 @@ namespace RobotsVsDinosaurs
             //Rand for attack power
         }
 
-        public void AttackRobot(List<Dinosaur> dinosaurs)
+        public void RobotAttack(List<Dinosaur> dinosaurs)
         {
             int count = 0;
 

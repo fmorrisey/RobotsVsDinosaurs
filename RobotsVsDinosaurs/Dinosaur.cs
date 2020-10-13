@@ -35,9 +35,9 @@ namespace RobotsVsDinosaurs
 
         //Memeber Methods
 
-        public void Attack(Dinosaur dinosaur)
+        public void Attack(Robot robotVictim) // take in dino
         {
-            //This will be called to attack opponent
+            robotVictim.Health -= AttackPower;
 
         }
 

@@ -51,11 +51,17 @@ namespace RobotsVsDinosaurs
                 Menu.DisplayDinoHerd(herdAlpha.herdGroup);
                 Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
                 Menu.Pause();
-                fleetBravo.AttackRobot(herdAlpha.herdGroup);
+                fleetBravo.RobotAttack(herdAlpha.herdGroup);
+                herdAlpha.DinosaurAttack(fleetBravo.fleetGroup);
                 
 
             } while ((herdAlpha.herdGroup.Count > 0) && (fleetBravo.fleetGroup.Count > 0));
-            Console.WriteLine("game code");
+
+
+            
+            Menu.DisplayDinoHerd(herdAlpha.herdGroup);
+            Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
+            Console.WriteLine("game over");
 
             //Loop until all died of winner
 

@@ -31,9 +31,57 @@ namespace RobotsVsDinosaurs
 
         public void PopulateHerd()
         {
-            CreateHerd("TRex", 10, 10, "Bite", 10);
-            CreateHerd("Iguanodone", 10, 10, "Slash", 10);
-            CreateHerd("Stegosaurus", 10, 10, "Charge", 10);
+            CreateHerd("TRex", 10, 10, "Bite", 7);
+            CreateHerd("Iguanodone", 10, 10, "Slash", 5);
+            CreateHerd("Stegosaurus", 10, 10, "Charge", 4);
+        }
+
+        public void DinosaurAttack(List<Robot> robots)
+        {
+            int count = 0;
+
+            if (robots.Count >= herdGroup.Count)
+            {
+                count = herdGroup.Count;
+            }
+            else
+            {
+                count = robots.Count;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                //Checks for dead dino
+                herdGroup[i].Attack(robots[i]);
+                if (DeathRobo(robots[i]))
+                {
+                    robots.Remove(robots[i]);
+                }
+
+                //Checks after removal to max count
+                if (robots.Count >= herdGroup.Count)
+                {
+                    count = herdGroup.Count;
+                }
+                else
+                {
+                    count = herdGroup.Count;
+                }
+            }
+        }
+
+        public bool DeathRobo(Robot robot)
+        {
+            bool death = false;
+            if (robot.Health > 0)
+            {
+                death = false;
+            }
+            else
+            {
+                death = true;
+            }
+            return death;
         }
     }
 }
