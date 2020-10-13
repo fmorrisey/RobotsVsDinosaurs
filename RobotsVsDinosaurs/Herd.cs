@@ -10,7 +10,8 @@ namespace RobotsVsDinosaurs
     class Herd
     {
         //Mem Vars
-        public List<Dinosaur> herdGroup; // Creates the Dino heard list
+        public List<Dinosaur> herdGroup; // Creates the Dino heard list variable
+        
         // This creates a list of Dino objects called Heard List
 
         //constructor

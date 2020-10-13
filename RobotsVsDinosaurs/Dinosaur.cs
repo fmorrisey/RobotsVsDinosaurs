@@ -12,11 +12,11 @@ namespace RobotsVsDinosaurs
     class Dinosaur
     {
         //Member Variables
-        public string Type;
-        public int Health;
-        public int Energy;
-        public string AttackType;
-        public int AttackPower;
+        public string Type { get; set; }
+        public int Health { get; set; }
+        public int Energy { get; set; }
+        public string AttackType { get; set; }
+        public int AttackPower { get; set; }
 
         //Dinosaur dinosaur;
         //This will be used frequently
@@ -35,9 +35,10 @@ namespace RobotsVsDinosaurs
 
         //Memeber Methods
 
-        public void Attack()
+        public void Attack(Dinosaur dinosaur)
         {
             //This will be called to attack opponent
+
         }
 
         public void TakeDamage()

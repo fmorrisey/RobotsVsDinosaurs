@@ -13,11 +13,11 @@ namespace RobotsVsDinosaurs
     class Robot
     {
         //Member Variables
-        public string Name;
-        public int Health;
-        public int PowerLevel;
-        public string Weapon;
-        public int AttackPower;
+        public string Name { get; set; }
+        public int Health { get; set; }
+        public int PowerLevel { get; set; }
+        public string Weapon { get; set; }
+        public int AttackPower { get; set; }
 
         //This will be used frequently
         //Random rand;
@@ -38,7 +38,7 @@ namespace RobotsVsDinosaurs
 
         public void Attack()
         {
-            //this will be called to attack opponent
+
         }
 
         public void TakeDamage()

@@ -41,9 +41,23 @@ namespace RobotsVsDinosaurs
             Console.ReadLine();
         }
 
-        public void GameMenu()
+        public void GameMenuDisplay()
         {
+            Console.WriteLine();
+        }
+        
+        public void GameMenuSelction(string userChoice)
+        {
+  
+            switch (userChoice)
+            {
+                case "1": /*action*/ break;
+                case "2": /*action*/ break;
+                case "3": /*action*/ break;
+                default: break;
+            }
 
+            //return?
         }
 
         public void DisplayDinoHerd(List<Dinosaur> dinosaurs)
