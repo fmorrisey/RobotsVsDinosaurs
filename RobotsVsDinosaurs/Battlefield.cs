@@ -51,17 +51,27 @@ namespace RobotsVsDinosaurs
                 Menu.DisplayDinoHerd(herdAlpha.herdGroup);
                 Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
                 Menu.Pause();
+                Menu.Clear();
                 fleetBravo.RobotAttack(herdAlpha.herdGroup);
                 herdAlpha.DinosaurAttack(fleetBravo.fleetGroup);
                 
 
             } while ((herdAlpha.herdGroup.Count > 0) && (fleetBravo.fleetGroup.Count > 0));
 
-
-            
             Menu.DisplayDinoHerd(herdAlpha.herdGroup);
             Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
-            Console.WriteLine("game over");
+            if (herdAlpha.herdGroup.Count <= 0)
+            {
+                //When Dino herd = 0
+                Menu.Blinker("ROBOTS WIN", 10, 200);
+            }
+            else if (fleetBravo.fleetGroup.Count <= 0)
+            {
+                //When Robot Fleet = 0 
+                Menu.Blinker("DINOS WIN", 10, 200);
+            }
+            
+            Console.WriteLine("GAME OVER!!!");
 
             //Loop until all died of winner
 
