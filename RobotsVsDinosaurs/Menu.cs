@@ -122,6 +122,8 @@ namespace RobotsVsDinosaurs
 
         public void DisplayDinoHerd(List<Dinosaur> dinosaurs)
         { // This creates and prints a list of Dinos for the player
+            Console.WriteLine();
+            MenuDecorators("star");
             Console.WriteLine("DAS DINO HERD!!!");
             MenuDecorators("dash");
 
@@ -138,6 +140,7 @@ namespace RobotsVsDinosaurs
 
         public void DisplayRobotFleet(List<Robot> robots)
         { // This creates and prints a list of robots for the player
+            MenuDecorators("star");
             Console.WriteLine("DER ROBO Fleet!!!");
             MenuDecorators("dash");
             

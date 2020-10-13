@@ -29,32 +29,35 @@ namespace RobotsVsDinosaurs
         }
 
         public void PopulateFleet()
-        {
-            CreateRobot("Rocky", 10, 10, "Sword", 5);
-            CreateRobot("Johnny", 10, 10, "Lazer", 3);
-            CreateRobot("Kyle", 10, 10, "Saw", 7);
-            //Rand for attack power
+        {   //The Robot fleet hardcoded with information
+            CreateRobot("Rocky", 100, 10, "Sword", 20);
+            CreateRobot("Johnny", 100, 10, "Lazer", 18);
+            CreateRobot("Kyle", 100, 10, "Saw", 16);
+            
         }
 
-        public void RobotAttack(List<Dinosaur> dinosaurs)
+        public void RobotAttack(List<Dinosaur> dinosaurs, List<Robot> robots)
         {
-            int count = 0;
+            int count = 0; 
 
             if (dinosaurs.Count >= fleetGroup.Count)
-            {
+            {   // Compares the heard to the fleet
                 count = fleetGroup.Count;
             }
             else
-            {
+            {   //updates the dino count
                 count = dinosaurs.Count;
             }
 
             for (int i = 0; i < count; i++)
             {
-                //Checks for dead dino
-                fleetGroup[i].Attack(dinosaurs[i]);
+                //Robot Fleet attack Dino Herd
+                fleetGroup[i].Attack(dinosaurs[i], robots[i]);
+                // DEBUG: Console.Write($"FltI: {i} |");
+                
+                //Checks for dead Dino
                 if (DeathDino(dinosaurs[i]))
-                {
+                {   //Removes Dino if health is zero
                     dinosaurs.Remove(dinosaurs[i]);
                 }
 
@@ -75,13 +78,16 @@ namespace RobotsVsDinosaurs
 
         public bool DeathDino(Dinosaur dinosaur)
         {
-            bool death = false;
-            if (dinosaur.Health > 0)
-            {
+            bool death = false; //Death Bool
+            if (dinosaur.Health > 0) //Health check
+            {   //You ok buddy?
                 death = false;
             }
             else
             {
+                Console.WriteLine(); //Announces death!
+                Console.WriteLine($"DEAD: {dinosaur.Type}");
+                //They were beloved and will be missed
                 death = true;
             }
             return death;

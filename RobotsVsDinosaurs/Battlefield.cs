@@ -36,30 +36,27 @@ namespace RobotsVsDinosaurs
 
 
             //----MENU START UP----//
-           // Menu.Blinker("ALERT!!!", 10, 100);
+            // Menu.Blinker("ALERT!!!", 10, 100);
             //Menu.Welcome();
+
 
             
 
-            //fleetBravo.fleetGroup.Where(robot => robot.Name == userChoice) //Test the use of Linq to manipulate a sinlge item
-            //    .Select(robot => { robot.Health -= hit; return robot; })
-            //    .ToList();
 
             do
             {
-
                 Menu.DisplayDinoHerd(herdAlpha.herdGroup);
                 Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
                 Menu.Pause();
                 Menu.Clear();
-                fleetBravo.RobotAttack(herdAlpha.herdGroup);
-                herdAlpha.DinosaurAttack(fleetBravo.fleetGroup);
-                
+                herdAlpha.DinosaurAttack(fleetBravo.fleetGroup, herdAlpha.herdGroup);
+                fleetBravo.RobotAttack(herdAlpha.herdGroup, fleetBravo.fleetGroup);
 
             } while ((herdAlpha.herdGroup.Count > 0) && (fleetBravo.fleetGroup.Count > 0));
 
             Menu.DisplayDinoHerd(herdAlpha.herdGroup);
             Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
+
             if (herdAlpha.herdGroup.Count <= 0)
             {
                 //When Dino herd = 0

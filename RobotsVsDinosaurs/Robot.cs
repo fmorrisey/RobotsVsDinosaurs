@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 namespace RobotsVsDinosaurs
 {
     // ROBOT OBJECTS
-    //
-    //
-
     class Robot
     {
-        //Member Variables
-        public string Name { get; set; }
-        public int Health { get; set; }
-        public int PowerLevel { get; set; }
-        public string Weapon { get; set; }
-        public int AttackPower { get; set; }
+        ////Member Variables
+        //These are used for indvidual Robots
+        public string Name;
+        public int Health;
+        public int PowerLevel;
+        public string Weapon;
+        public int AttackPower;
 
-        //This will be used frequently
-        //Random rand;
+        //These are used for hit point calculationst
+        Random rand;
+        public int hitPoints;
 
         //Constructor
         public Robot(string name, int health, int powerLevel, string weapon, int attackPower)
@@ -31,21 +30,41 @@ namespace RobotsVsDinosaurs
             this.PowerLevel = powerLevel;
             this.Weapon = weapon;
             this.AttackPower = attackPower;
-            
+            this.rand = new Random();
+            this.hitPoints = 0;
+
+
         }
 
         // MemberMethods
 
-        public void Attack(Dinosaur dinosaurVictim) // take in dino
+        public void Attack(Dinosaur dinoVictim, Robot robotAttacker) // take in Dino and robot hit points
         {
-            dinosaurVictim.Health -= AttackPower;
+
+            //Determines attackpower
+            
+            int hitPoints = RobotAttackHitPoints(robotAttacker.AttackPower);
+            dinoVictim.Health -= hitPoints;
+            
+            Console.Write($"ROBOT: {robotAttacker.Name} | " +
+                $"AtkPwr: {robotAttacker.AttackPower} | " +
+                $"Hit:{hitPoints} |");
             
         }
-
-        public void TakeDamage()
+        
+        public int RobotAttackHitPoints(int attack)
         {
-            // ths will be called to assign damage to robot
-        }
+            //Rand Hit Point Logic
+            int lowerInt = rand.Next(5, 8);
+            int lowerRng = rand.Next(lowerInt, attack);
+            int attackResult = rand.Next(lowerRng, attack);
+            Console.Write($"| Lower: {lowerRng} ");
+            Console.WriteLine($" | Upper: {attackResult} ");
+            return attackResult;
+            
+        } 
+
+
 
 
     }

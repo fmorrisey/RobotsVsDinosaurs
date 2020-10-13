@@ -11,10 +11,9 @@ namespace RobotsVsDinosaurs
     {
         //Mem Vars
         public List<Dinosaur> herdGroup; // Creates the Dino heard list variable
-        
         // This creates a list of Dino objects called Heard List
 
-        //constructor
+        //constructs the herd
         public Herd()
         {
             herdGroup = new List<Dinosaur>(); //This creats the list of Dinosaur objects added to the heard
@@ -23,38 +22,41 @@ namespace RobotsVsDinosaurs
 
         //creates the individual Dinosaurs to add to the herdGroup list
         public Dinosaur CreateHerd(string type, int health, int energy, string attackType, int attackPower)
-        {   
+        {
             Dinosaur dinosaur = new Dinosaur(type, health, energy, attackType, attackPower);
             herdGroup.Add(dinosaur);
             return dinosaur;
         }
 
         public void PopulateHerd()
-        {
-            CreateHerd("TRex", 10, 10, "Bite", 7);
-            CreateHerd("Iguanodone", 10, 10, "Slash", 5);
-            CreateHerd("Stegosaurus", 10, 10, "Charge", 4);
+        {   //The herd hardcoded with information
+            CreateHerd("TRex", 100, 10, "Bite", 25);
+            CreateHerd("Iguanodone", 100, 10, "Slash", 15);
+            CreateHerd("Stegasaurus", 100, 10, "Charge", 21);
         }
 
-        public void DinosaurAttack(List<Robot> robots)
+        public void DinosaurAttack(List<Robot> robots, List<Dinosaur> dinosaurs)
         {
-            int count = 0;
+            int count = 0; 
 
             if (robots.Count >= herdGroup.Count)
-            {
+            {   //Compares the fleet to the heard
                 count = herdGroup.Count;
             }
             else
-            {
+            {   //updates the robot count
                 count = robots.Count;
             }
 
             for (int i = 0; i < count; i++)
             {
-                //Checks for dead dino
-                herdGroup[i].Attack(robots[i]);
+                //Dino herd attacks Robot Fleet
+                herdGroup[i].Attack(robots[i], dinosaurs[i]);
+                // DEBUG: Console.Write($"HrdI: {i} |");
+                
+                //Checks for dead robots
                 if (DeathRobo(robots[i]))
-                {
+                {   //Removes Robot if health is zero
                     robots.Remove(robots[i]);
                 }
 
@@ -65,7 +67,7 @@ namespace RobotsVsDinosaurs
                 }
                 else
                 {
-                    count = herdGroup.Count;
+                    count = robots.Count;
                 }
             }
         }
@@ -73,12 +75,14 @@ namespace RobotsVsDinosaurs
         public bool DeathRobo(Robot robot)
         {
             bool death = false;
-            if (robot.Health > 0)
+            if (robot.Health > 0) //Health check
             {
                 death = false;
             }
             else
             {
+                Console.WriteLine();//Announces death!
+                Console.WriteLine($"DEAD: {robot.Name}");
                 death = true;
             }
             return death;
