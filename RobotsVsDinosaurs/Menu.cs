@@ -43,9 +43,22 @@ namespace RobotsVsDinosaurs
 
         public void GameMenuDisplay()
         {
-            Console.WriteLine();
+            // The "\n" you see in the first and last Console.WriteLine is called an "escape character".
+            // It creates a new line in the console, which makes the things printing 
+            // to the console look cleaner and more spaced out :)
+            Console.WriteLine($"Welcome");
+            Console.WriteLine("\nPress [1] for Robot to attack Dino.");
+            Console.WriteLine("Press [2] for Dino to attack Robo.");
+            Console.WriteLine("Press [3] to add item to cart.");
+            Console.WriteLine("Press [4] to to create a review.");
+            Console.WriteLine("Press [5] to select a product.");
+            Console.WriteLine("Press [6] to display a product.");
+            Console.WriteLine("Press [7] ????????(later view cart).");
+            Console.WriteLine("Press [8] to exit.\n");
         }
+
         
+
         public void GameMenuSelction(string userChoice)
         {
   
@@ -58,6 +71,53 @@ namespace RobotsVsDinosaurs
             }
 
             //return?
+        }
+
+        public void DisplayScore(List<Dinosaur> dinosaurs, List<Robot> robots)
+        {   //An Attempt to make a table but will require actual table commands and custom classes
+            //https://stackoverflow.com/questions/856845/how-to-best-way-to-draw-table-in-console-app-c
+            Console.WriteLine("DAS DINO HERD!!!");
+            MenuDecorators("dash");
+
+            for (int i = 0; i < dinosaurs.Count; i++)
+            {
+                //Row 1
+                Console.Write($"| {dinosaurs[i].Type} |");
+                MenuDecorators("div");
+                Console.Write($"| {robots[i].Name} |");
+
+                // Row 2
+                Console.Write($"{dinosaurs[i].Health} |");
+                MenuDecorators("div");
+                Console.Write($"| {robots[i].Health} |");
+
+                // Row 3
+                Console.Write($"{dinosaurs[i].Energy} |");
+                MenuDecorators("div");
+                Console.Write($"| {robots[i].PowerLevel} |");
+
+                // Row 4
+                Console.Write($"{dinosaurs[i].AttackType} |");
+                MenuDecorators("div");
+                Console.Write($"| {robots[i].Weapon} |");
+
+                //Row 5
+                Console.WriteLine($"{dinosaurs[i].AttackPower} |");
+                MenuDecorators("div");
+                Console.Write($"| {robots[i].AttackPower} |");
+            }
+
+            Console.WriteLine("DER ROBO Fleet!!!");
+            MenuDecorators("dash");
+
+            for (int i = 0; i < robots.Count; i++)
+            {
+                Console.Write($"| {robots[i].Name} |");
+                Console.Write($"{robots[i].Health} |");
+                Console.Write($"{robots[i].PowerLevel} |");
+                Console.Write($"{robots[i].Weapon} |");
+                Console.WriteLine($"{robots[i].AttackPower} |");
+            }
         }
 
         public void DisplayDinoHerd(List<Dinosaur> dinosaurs)
@@ -104,7 +164,9 @@ namespace RobotsVsDinosaurs
                 case "slashrt": Console.WriteLine("///////////////"); break;
                 case "slashlf": Console.WriteLine("\\\\\\\\\\\\\\\\"); break;
                 case "pipe": Console.WriteLine("|||||||||||||||||||"); break;
+                case "div": Console.Write(" || "); break;
                 default: Console.WriteLine("/In/Valid//Menu//Decorator/"); break;
+
             }
         }
 

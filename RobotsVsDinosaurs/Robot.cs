@@ -36,9 +36,10 @@ namespace RobotsVsDinosaurs
 
         // MemberMethods
 
-        public void Attack()
+        public void Attack(Dinosaur dinosaurVictim) // take in dino
         {
-
+            dinosaurVictim.Health -= AttackPower;
+            
         }
 
         public void TakeDamage()

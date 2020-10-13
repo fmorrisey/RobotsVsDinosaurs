@@ -14,8 +14,7 @@ namespace RobotsVsDinosaurs
         Dinosaur dinosaur; //Brings the Dino obj to the Battlefield
         Robot robot; //Brings the Robot obj to the battlefield
         Menu Menu;
-        List<Dinosaur> herdGroup;
-        List<Robot> fleetGroup;
+        
 
         Player player1;
         
@@ -37,36 +36,36 @@ namespace RobotsVsDinosaurs
 
 
             //----MENU START UP----//
-            //Menu.Blinker("ALERT!!!", 10, 100);
+           // Menu.Blinker("ALERT!!!", 10, 100);
             //Menu.Welcome();
-            //Menu.DisplayDinoHerd(herdAlpha.herdGroup);
 
-            int hit = 5;
-            //robot.Attack(fleetBravo.fleetGroup);
-
-            //var fleetBravoArray = (from r in fleetGroup select r.Name).ToArray();
-
-            string userChoice = "Rocky";
-
-            Menu.DisplayRobotFleet(fleetBravo.fleetGroup);//inital list
-            fleetBravo.fleetGroup.Where(robot => robot.Name == userChoice) //Test the use of Linq to manipulate a sinlge item
-                .Select(robot => { robot.Health -= hit; return robot; })
-                .ToList();
-
-            /*var roboName = fleetBravo.fleetGroup
-                .Select(r => { r.Name; return robot; });*/
-
-            //Console.WriteLine(fleetBravoArray);
             
 
-            //var roboName = (from r )
+            //fleetBravo.fleetGroup.Where(robot => robot.Name == userChoice) //Test the use of Linq to manipulate a sinlge item
+            //    .Select(robot => { robot.Health -= hit; return robot; })
+            //    .ToList();
+
+            do
+            {
+
+                Menu.DisplayDinoHerd(herdAlpha.herdGroup);
+                Menu.DisplayRobotFleet(fleetBravo.fleetGroup);
+                Menu.Pause();
+                fleetBravo.AttackRobot(herdAlpha.herdGroup);
+                
+
+            } while ((herdAlpha.herdGroup.Count > 0) && (fleetBravo.fleetGroup.Count > 0));
+            Console.WriteLine("game code");
+
+            //Loop until all died of winner
 
 
+            //death check for removal
 
-            //name = fleetBravo.fleetGroup.Select(robot => { robot = robot.Name; return name; });
-            //Console.WriteLine($"We HIT {name)} W A ROCKET ");
-            Menu.DisplayRobotFleet(fleetBravo.fleetGroup); //Prints the list again to check for value
-            //Console.WriteLine(robot.Name);
+
+            
+
+
             Menu.Pause();
 
             //dinosaur.TakeDamage(dinosaur.AttackPower);
@@ -76,6 +75,7 @@ namespace RobotsVsDinosaurs
             //List<Robot> robots = fleetBravo.Select()
 
         }
+        
 
         //public Robot Attack(List<Robot> robot)
         //{
@@ -90,9 +90,62 @@ namespace RobotsVsDinosaurs
         //        }
         //    }
         //}
-        
+        /*
+        public void UsePlatform()
+        {
 
-        
+            string userInput = "";
+            //Product transferProduct = null;
+
+            Console.WriteLine("Welcome to AmAZINGZon - by Guff Benthos");
+
+            while (userInput != "8")
+            {
+                Menu.GameMenuDisplay();
+                userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "1":
+                        consumer.AskFirstName();
+                        break;
+                    case "2":
+                        consumer.AskLastName();
+                        break;
+                    case "3":
+                        if (transferProduct != null)
+                        {
+                            consumer.AddToCart(transferProduct);
+                            inventory.InventoryUpdate(transferProduct);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No Product Selected");
+                        }
+                        break;
+                    case "4": //consumer.CreateReview(); 
+                        break;
+                    case "5":
+                        transferProduct = consumer.ProductSearch(inventory.inventory);
+                        break;
+                    case "6":
+                        consumer.DisplayProductInfo(inventory.inventory);
+                        break;
+                    case "7":
+                        Console.WriteLine("Nothing here bud (View Cart)");
+                        break;
+                    case "8":
+                        Console.WriteLine("Thanks for using the AMAZINGZONE program!");
+                        break;
+                    default:
+                        Console.WriteLine("Whoops! You've entered invalid input.");
+                        Console.WriteLine("Please be sure to enter a number between 1 and 8.");
+                        break;
+                }
+            }
+        }*/
+
+
 
     }
 }
