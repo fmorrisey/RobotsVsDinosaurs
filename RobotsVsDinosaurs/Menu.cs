@@ -39,38 +39,6 @@ namespace RobotsVsDinosaurs
             Console.ReadLine();
         }
 
-        public void GameMenuDisplay()
-        {
-            // The "\n" you see in the first and last Console.WriteLine is called an "escape character".
-            // It creates a new line in the console, which makes the things printing 
-            // to the console look cleaner and more spaced out :)
-            Console.WriteLine($"Welcome");
-            Console.WriteLine("\nPress [1] for Robot to attack Dino.");
-            Console.WriteLine("Press [2] for Dino to attack Robo.");
-            Console.WriteLine("Press [3] to add item to cart.");
-            Console.WriteLine("Press [4] to create a review.");
-            Console.WriteLine("Press [5] to select a product.");
-            Console.WriteLine("Press [6] to display a product.");
-            Console.WriteLine("Press [7] ????????(later view cart).");
-            Console.WriteLine("Press [8] to exit.\n");
-        }
-
-        
-
-        public void GameMenuSelction(string userChoice)
-        {
-  
-            switch (userChoice)
-            {
-                case "1": /*action*/ break;
-                case "2": /*action*/ break;
-                case "3": /*action*/ break;
-                default: break;
-            }
-
-            //return?
-        }
-
         public bool PlayAgain(bool newGame)
         {
             newGame = false;
@@ -206,8 +174,6 @@ namespace RobotsVsDinosaurs
 
             }
         }
-
-
         
         public void Pause(string message)
         {
@@ -219,7 +185,7 @@ namespace RobotsVsDinosaurs
         
         public void Blinker(string text, int blinkNum, int milliseconds)
         {
-            //COPIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
+            //COPIED AND MODIFIED FROM STACKOVERFLOW https://stackoverflow.com/questions/4755204/adding-line-break
             //Takes in custom text, repeats three times, blinks as much as you like, and at a set interval
 
             bool visible = true;
