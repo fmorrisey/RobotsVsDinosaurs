@@ -16,29 +16,30 @@ namespace RobotsVsDinosaurs
         //constructs the herd
         public Herd()
         {
-            herdGroup = new List<Dinosaur>(); //This creats the list of Dinosaur objects added to the heard
+            herdGroup = new List<Dinosaur>(); //This creates the list of Dinosaur objects added to the heard
             PopulateHerd(); //Call to populate the herd with Dino Objs with assigned values
         }
 
+        public void PopulateHerd() //Helper Method used to 
+        {   //The herd hard coded with information
+            CreateDino("TRex", 100, 10, "Bite", 25);
+            CreateDino("Iguanodone", 100, 10, "Slash", 15);
+            CreateDino("Stegasaurus", 100, 10, "Charge", 21);
+        }
         //creates the individual Dinosaurs to add to the herdGroup list
-        public Dinosaur CreateHerd(string type, int health, int energy, string attackType, int attackPower)
+        public Dinosaur CreateDino(string type, int health, int energy, string attackType, int attackPower)
         {
             Dinosaur dinosaur = new Dinosaur(type, health, energy, attackType, attackPower);
             herdGroup.Add(dinosaur);
             return dinosaur;
         }
 
-        public void PopulateHerd()
-        {   //The herd hardcoded with information
-            CreateHerd("TRex", 100, 10, "Bite", 25);
-            CreateHerd("Iguanodone", 100, 10, "Slash", 15);
-            CreateHerd("Stegasaurus", 100, 10, "Charge", 21);
-        }
 
         public void DinosaurAttack(List<Robot> robots, List<Dinosaur> dinosaurs)
         {
-            int count = 0; 
+            int count = 0;
 
+            // checks to see if there is anyone to attack
             if (robots.Count >= herdGroup.Count)
             {   //Compares the fleet to the heard
                 count = herdGroup.Count;

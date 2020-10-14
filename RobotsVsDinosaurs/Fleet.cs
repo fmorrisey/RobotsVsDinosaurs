@@ -16,10 +16,17 @@ namespace RobotsVsDinosaurs
         //constructs the fleet
         public Fleet()
         {
-            fleetGroup = new List<Robot>(); //This creats the list of robots objects added to the heard
+            fleetGroup = new List<Robot>(); //This creates the list of robots objects added to the heard
             PopulateFleet(); //Calls to populate the fleet with Robot objs to with assigned values
         }
 
+        public void PopulateFleet() //Helper method to create the fleet
+        {   //The Robot fleet hardcoded with information
+            CreateRobot("Rocky", 100, 10, "Sword", 20);
+            CreateRobot("Johnny", 100, 10, "Lazer", 18);
+            CreateRobot("Kyle", 100, 10, "Saw", 16);
+            
+        }
         //Creates the individual Robots to add to the fleetGroup list
         public Robot CreateRobot(string name, int health, int powerLevel, string weapon, int attackPower)
         {
@@ -28,19 +35,13 @@ namespace RobotsVsDinosaurs
             return robot;
         }
 
-        public void PopulateFleet()
-        {   //The Robot fleet hardcoded with information
-            CreateRobot("Rocky", 100, 10, "Sword", 20);
-            CreateRobot("Johnny", 100, 10, "Lazer", 18);
-            CreateRobot("Kyle", 100, 10, "Saw", 16);
-            
-        }
 
         public void RobotAttack(List<Dinosaur> dinosaurs, List<Robot> robots)
         {
-            int count = 0; 
+            int count = 0;
 
-            if (dinosaurs.Count >= fleetGroup.Count)
+            // checks to see if there is anyone to attack
+            if (dinosaurs.Count >= fleetGroup.Count) 
             {   // Compares the heard to the fleet
                 count = fleetGroup.Count;
             }

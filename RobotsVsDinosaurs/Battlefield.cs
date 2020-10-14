@@ -9,23 +9,19 @@ namespace RobotsVsDinosaurs
 {
     class Battlefield
     {
-        //Spawn Dinos and Robots // Later iterations will have automatd spawner
+        //Spawn Dinos and Robots // Later iterations will have automated spawner
         public Herd herdAlpha; // Creates the Dino Herd
         public Fleet fleetBravo; // Creates the Robot Fleet
-        Dinosaur dinosaur; //Brings the Dino obj to the Battlefield
-        Robot robot; //Brings the Robot obj to the battlefield
         Menu Menu;
-
         int roundCounter;
 
-        Player player1;
+        
         
         public Battlefield()
         {
             //Instantiate the two groups of dinos and robots
             herdAlpha = new Herd(); //
             fleetBravo = new Fleet();
-            player1 = new Player();
             Menu = new Menu();
 
         }
